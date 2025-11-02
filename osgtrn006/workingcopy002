@@ -1,0 +1,109 @@
+#include <osg/ShapeDrawable>
+#include <osg/Geode>
+#include <osg/MatrixTransform>
+#include <osgText/Text>
+#include <osgDB/ReadFile>
+#include <osgViewer/Viewer>
+#include <osgGA/TrackballManipulator>
+#include <osgGA/GUIEventHandler>
+#include <imgui.h>
+#include <imgui_impl_opengl3.h>
+#include "OsgImGuiHandler.hpp"
+
+// (Reuse your createAxis, createAxes helpers)
+
+// --- ImGui Handler ---
+class ImGuiPlaneHandler : public OsgImGuiHandler
+{
+public:
+    ImGuiPlaneHandler(osg::ref_ptr<osg::MatrixTransform> fighterModel,
+                      osg::ref_ptr<osg::MatrixTransform> fighterAxes)
+        : planeTransform_(fighterModel), axesTransform_(fighterAxes)
+    {
+        roll = pitch = yaw = 0.0f;
+    }
+
+    void drawUi() override
+    {
+        ImGui::Begin("Plane Rotation");
+
+        ImGui::Text("Roll");
+        ImGui::SliderFloat("##RollSlider", &roll, -180.0f, 180.0f);
+        ImGui::SameLine();
+        ImGui::InputFloat("##RollInput", &roll, 1.0f, 10.0f, "%.1f");
+
+        ImGui::Text("Pitch");
+        ImGui::SliderFloat("##PitchSlider", &pitch, -180.0f, 180.0f);
+        ImGui::SameLine();
+        ImGui::InputFloat("##PitchInput", &pitch, 1.0f, 10.0f, "%.1f");
+
+        ImGui::Text("Yaw");
+        ImGui::SliderFloat("##YawSlider", &yaw, -180.0f, 180.0f);
+        ImGui::SameLine();
+        ImGui::InputFloat("##YawInput", &yaw, 1.0f, 10.0f, "%.1f");
+
+        ImGui::End();
+
+        // Apply rotation to plane
+        osg::Quat qYaw(osg::DegreesToRadians(yaw), osg::Vec3(0,0,1));
+        osg::Quat qPitch(osg::DegreesToRadians(pitch), osg::Vec3(1,0,0));
+        osg::Quat qRoll(osg::DegreesToRadians(roll), osg::Vec3(0,1,0));
+
+        osg::Quat finalRot = qYaw * qPitch * qRoll;
+        planeTransform_->setMatrix(osg::Matrix::rotate(finalRot));
+        if (axesTransform_) axesTransform_->setMatrix(osg::Matrix::rotate(finalRot));
+    }
+
+private:
+    osg::ref_ptr<osg::MatrixTransform> planeTransform_;
+    osg::ref_ptr<osg::MatrixTransform> axesTransform_;
+    float roll, pitch, yaw;
+};
+
+int main()
+{
+    osgViewer::Viewer viewer;
+    osg::ref_ptr<osg::Group> root = new osg::Group;
+
+    // --- Left viewport axes ---
+    osg::ref_ptr<osg::Group> axesGroup = new osg::Group;
+    axesGroup->addChild(createAxes("", true)); // Reference axes NED
+    osg::ref_ptr<osg::MatrixTransform> fighterAxesTransform = new osg::MatrixTransform;
+    fighterAxesTransform->addChild(createAxes("B", true, true)); // Body axes
+    axesGroup->addChild(fighterAxesTransform);
+
+    osg::ref_ptr<osg::Camera> leftCamera = new osg::Camera;
+    leftCamera->setViewport(0, 0, 400, 600);
+    leftCamera->setProjectionMatrixAsPerspective(30.0, 400.0/600.0, 1.0, 1000.0);
+    leftCamera->setViewMatrixAsLookAt(osg::Vec3(20,20,20), osg::Vec3(0,0,0), osg::Vec3(0,0,1));
+    leftCamera->setReferenceFrame(osg::Transform::ABSOLUTE_RF);
+    leftCamera->setRenderOrder(osg::Camera::POST_RENDER);
+    leftCamera->addChild(axesGroup);
+    root->addChild(leftCamera);
+
+    // --- Right viewport plane ---
+    osg::ref_ptr<osg::Group> modelGroup = new osg::Group;
+    std::string dataPath = "/home/murate/Documents/SwTrn/OsgTrn/OpenSceneGraph-Data/";
+    osg::ref_ptr<osg::Node> cessnaModel = osgDB::readRefNodeFile(dataPath + "cessna.osgt");
+    if (!cessnaModel) return 1;
+
+    osg::ref_ptr<osg::MatrixTransform> fighterModelTransform = new osg::MatrixTransform;
+    fighterModelTransform->addChild(cessnaModel);
+    modelGroup->addChild(fighterModelTransform);
+
+    osg::ref_ptr<osg::Camera> rightCamera = new osg::Camera;
+    rightCamera->setViewport(400, 0, 600, 600);
+    rightCamera->setProjectionMatrixAsPerspective(30.0, 600.0/600.0, 1.0, 1000.0);
+    rightCamera->setReferenceFrame(osg::Transform::ABSOLUTE_RF);
+    rightCamera->setRenderOrder(osg::Camera::POST_RENDER);
+    rightCamera->addChild(modelGroup);
+    root->addChild(rightCamera);
+
+    viewer.setSceneData(root);
+    viewer.setCameraManipulator(new osgGA::TrackballManipulator);
+
+    // --- ImGui handler for rotation ---
+    viewer.addEventHandler(new ImGuiPlaneHandler(fighterModelTransform, fighterAxesTransform));
+
+    return viewer.run();
+}

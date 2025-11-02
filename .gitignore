@@ -1,0 +1,45 @@
+# ========================================
+# OpenSceneGraph / OsgTrn Project .gitignore
+# ========================================
+
+# ===== Core build outputs =====
+**/build/
+**/_deps/
+**/CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# ===== Local development tools =====
+.vscode/
+.idea/
+*.swp
+*.swo
+*.log
+
+# ===== Binary and object files =====
+*.o
+*.obj
+*.a
+*.so
+*.dll
+*.exe
+*.lib
+*.pdb
+
+# ===== Operating system junk =====
+.DS_Store
+Thumbs.db
+
+# ===== Generated / External data =====
+OpenSceneGraph-Data/
+OsgEarth-Data/
+osgcookbook/
+_deps/
+
+# ===== Optional project scripts =====
+**/buildrun.sh
+
+# ===== Misc =====
+*~
+*.tmp
