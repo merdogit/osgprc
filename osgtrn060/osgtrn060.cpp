@@ -393,7 +393,7 @@ protected:
 // ======================= Main ===========================
 int main()
 {
-    const std::string baseDir  = "/home/murate/Documents/SwTrn/OsgTrn/osgtrn060/";
+    const std::string baseDir  = "/home/murate/Documents/SwTrn/OsgPrc/osgtrn060/";
     const std::string trajFile = baseDir + "trajectory.txt";
     generateTrajectoryFile(trajFile);
     TrajData data = loadTrajectoryFile(trajFile);
@@ -423,7 +423,7 @@ int main()
     root->addChild(trailAircraft->geode());
     root->addChild(trailMissile->geode());
 
-    const std::string dataPath = "/home/murate/Documents/SwTrn/OsgTrn/OpenSceneGraph-Data/";
+    const std::string dataPath = "/home/murate/Documents/SwTrn/OsgPrc/OpenSceneGraph-Data/";
     osg::ref_ptr<osg::Node> acraft  = osgDB::readRefNodeFile(dataPath + "F-14-low-poly-axes-modified.ac");
     osg::ref_ptr<osg::Node> missile = osgDB::readRefNodeFile(dataPath + "AIM-9L.ac");
 

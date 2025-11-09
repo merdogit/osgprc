@@ -8,7 +8,7 @@ int main()
     osgViewer::Viewer viewer;
 
     // Path to OSG sample data (Debian installs here)
-    std::string dataPath = "/home/murate/Documents/SwTrn/OsgTrn/OpenSceneGraph-Data/";
+    std::string dataPath = "/home/murate/Documents/SwTrn/OsgPrc/OpenSceneGraph-Data/";
 
     osg::ref_ptr<osg::Node> model = osgDB::readNodeFile(dataPath + "F-14-low-poly.ac");
     if (!model)

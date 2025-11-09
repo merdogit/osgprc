@@ -74,7 +74,7 @@ int main(int argc, char** argv)
 
     osg::ref_ptr<osg::Group> root = new osg::Group();
 
-    const std::string dataPath = "/home/murate/Documents/SwTrn/OsgTrn/OpenSceneGraph-Data/";
+    const std::string dataPath = "/home/murate/Documents/SwTrn/OsgPrc/OpenSceneGraph-Data/";
 
     // Load model
     osg::ref_ptr<osg::Node> cessna = osgDB::readNodeFile(dataPath + "cessna.osg");

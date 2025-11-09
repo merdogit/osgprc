@@ -15,7 +15,7 @@
 
 int main( int argc, char** argv )
 {
-    const std::string dataPath = "/home/murate/Documents/SwTrn/OsgTrn/OpenSceneGraph-Data/";
+    const std::string dataPath = "/home/murate/Documents/SwTrn/OsgPrc/OpenSceneGraph-Data/";
 
     osg::Node* model = osgDB::readNodeFile(dataPath + "cessna.osg.0,0,90.rot");
     if ( !model ) return 1;

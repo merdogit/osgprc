@@ -300,7 +300,7 @@ protected:
 // ======================= Main ===========================
 int main()
 {
-    const std::string baseDir  = "/home/murate/Documents/SwTrn/OsgTrn/osgtrn061/";
+    const std::string baseDir  = "/home/murate/Documents/SwTrn/OsgPrc/osgtrn061/";
     const std::string trajFile = baseDir + "trajectory.txt";
     generateTrajectoryFile(trajFile);
     TrajData data = loadTrajectoryFile(trajFile);
@@ -313,8 +313,8 @@ int main()
     root->addChild(trailAircraft->geode());
     root->addChild(trailMissile->geode());
 
-    osg::ref_ptr<osg::Node> acraft  = osgDB::readRefNodeFile("/home/murate/Documents/SwTrn/OsgTrn/OpenSceneGraph-Data/F-14-low-poly-axes-modified.ac");
-    osg::ref_ptr<osg::Node> missile = osgDB::readRefNodeFile("/home/murate/Documents/SwTrn/OsgTrn/OpenSceneGraph-Data/AIM-9L.ac");
+    osg::ref_ptr<osg::Node> acraft  = osgDB::readRefNodeFile("/home/murate/Documents/SwTrn/OsgPrc/OpenSceneGraph-Data/F-14-low-poly-axes-modified.ac");
+    osg::ref_ptr<osg::Node> missile = osgDB::readRefNodeFile("/home/murate/Documents/SwTrn/OsgPrc/OpenSceneGraph-Data/AIM-9L.ac");
 
     osg::ref_ptr<osg::MatrixTransform> air = new osg::MatrixTransform;
     air->addChild(acraft);

@@ -24,7 +24,7 @@ osg::ref_ptr<osg::Node> findNodeByName(const std::string& name, osg::Node* root)
 }
 
 int main(int argc, char** argv) {
-    std::string filename = (argc > 1) ? argv[1] : "/home/murate/Documents/SwTrn/OsgTrn/OpenSceneGraph-Data/F-14-low-poly-osg.ac";
+    std::string filename = (argc > 1) ? argv[1] : "/home/murate/Documents/SwTrn/OsgPrc/OpenSceneGraph-Data/F-14-low-poly-osg.ac";
     osg::ref_ptr<osg::Node> root = osgDB::readNodeFile(filename);
     if (!root) {
         std::cerr << "Failed to load " << filename << std::endl;

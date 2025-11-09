@@ -325,7 +325,7 @@ private:
 // ======================= Main ===========================
 int main(int, char **)
 {
-    const std::string dataPath = "/home/murate/Documents/SwTrn/OsgTrn/OpenSceneGraph-Data/";
+    const std::string dataPath = "/home/murate/Documents/SwTrn/OsgPrc/OpenSceneGraph-Data/";
 
     osg::ref_ptr<osg::Group> root = new osg::Group();
     root->getOrCreateStateSet()->setMode(GL_LIGHTING, osg::StateAttribute::OFF | osg::StateAttribute::OVERRIDE);

@@ -296,7 +296,7 @@ int main(int argc, char **argv)
     osg::ref_ptr<osg::Group> root = new osg::Group();
 
     // Load F-14 model
-    std::string dataPath = "/home/murate/Documents/SwTrn/OsgTrn/OpenSceneGraph-Data/";
+    std::string dataPath = "/home/murate/Documents/SwTrn/OsgPrc/OpenSceneGraph-Data/";
     osg::ref_ptr<osg::Node> fighterModel =
         osgDB::readRefNodeFile(dataPath + "F-14-low-poly-no-land-gear.ac");
 

@@ -170,7 +170,7 @@ int main()
 {
     // Plane window
     osg::ref_ptr<osg::Group> _root = new osg::Group;
-    std::string _dataPath = "/home/murate/Documents/SwTrn/OsgTrn/OpenSceneGraph-Data/";
+    std::string _dataPath = "/home/murate/Documents/SwTrn/OsgPrc/OpenSceneGraph-Data/";
     osg::ref_ptr<osg::Node> _fighterModel =
         osgDB::readRefNodeFile(_dataPath + "F-14-low-poly-osg-no-landgear.ac");
 

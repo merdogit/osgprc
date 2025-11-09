@@ -99,7 +99,7 @@ int main()
 {
     osg::ref_ptr<osg::Group> root = new osg::Group();
 
-    std::string dataPath = "/home/murate/Documents/SwTrn/OsgTrn/OpenSceneGraph-Data/";
+    std::string dataPath = "/home/murate/Documents/SwTrn/OsgPrc/OpenSceneGraph-Data/";
     // osg::ref_ptr<osg::Node> model = osgDB::readNodeFile(dataPath + "F-14-low-poly-no-land-gear.ac");
     // osg::ref_ptr<osg::Node> model = osgDB::readNodeFile(dataPath + "cessna.osg");
     // osg::ref_ptr<osg::Node> model = osgDB::readNodeFile(dataPath + "typhoon-no-land-gear.ac");

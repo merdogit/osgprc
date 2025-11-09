@@ -93,7 +93,7 @@ osg::ref_ptr<osg::Group> createScene(osg::ref_ptr<osg::MatrixTransform> &planeXf
     osg::ref_ptr<osg::Group> root = new osg::Group;
 
     // Adjust the path for your system
-    std::string dataPath = "/home/murate/Documents/SwTrn/OsgTrn/OpenSceneGraph-Data/";
+    std::string dataPath = "/home/murate/Documents/SwTrn/OsgPrc/OpenSceneGraph-Data/";
 
     osg::ref_ptr<osg::Node> terrain = osgDB::readNodeFile(dataPath + "lz.osg");
     osg::ref_ptr<osg::Node> planeModel = osgDB::readNodeFile(dataPath + "cessna.osg.0,0,90.rot");

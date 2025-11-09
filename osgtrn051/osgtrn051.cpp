@@ -21,7 +21,7 @@
 
 int main(int argc, char** argv)
 {
-    const std::string dataPath = "/home/murate/Documents/SwTrn/OsgTrn/OpenSceneGraph-Data/";
+    const std::string dataPath = "/home/murate/Documents/SwTrn/OsgPrc/OpenSceneGraph-Data/";
 
     osg::ref_ptr<osg::MatrixTransform> trans = new osg::MatrixTransform;
     osg::ref_ptr<osg::Node> model = osgDB::readNodeFile(dataPath + "cessna.osg.0,0,90.rot");

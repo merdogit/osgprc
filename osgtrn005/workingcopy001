@@ -173,7 +173,7 @@ int main()
     // Right window (Cessna model)
     // ---------------------------
     osg::ref_ptr<osg::Group> root2 = new osg::Group;
-    std::string dataPath = "/home/murate/Documents/SwTrn/OsgTrn/OpenSceneGraph-Data/";
+    std::string dataPath = "/home/murate/Documents/SwTrn/OsgPrc/OpenSceneGraph-Data/";
     osg::ref_ptr<osg::Node> cessnaModel = osgDB::readRefNodeFile(dataPath + "cessna.osgt");
     if (!cessnaModel)
     {
